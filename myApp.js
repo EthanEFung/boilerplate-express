@@ -1,4 +1,5 @@
 let express = require('express');
+let bodyParser = require('body-parser');
 let app = express();
 
 const logger = (req, res, next) => {
@@ -12,6 +13,8 @@ const timed = (req, res, next) => {
 }
 
 app.use(logger)
+
+app.use(bodyParser.urlencoded({extended: false}))
 
 app.use('/public', express.static(__dirname + '/public'))
 
