@@ -32,6 +32,10 @@ app.get('/now', timed, (req, res) => {
     res.send({ time: req.time })
 })
 
+app.get('/:word/echo', (req, res) => {
+    res.send({ echo: req.params.word })
+})
+
 console.log("Hello World")
 
 
