@@ -1,6 +1,13 @@
 let express = require('express');
 let app = express();
 
+const logger = (req, res, next) => {
+    console.log(req.method, req.path, "-", req.ip);
+    next()
+}
+
+
+app.use(logger)
 app.use('/public', express.static(__dirname + '/public'))
 
 app.get('/', (req, res) => {
