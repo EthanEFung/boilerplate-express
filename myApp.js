@@ -11,8 +11,8 @@ const timed = (req, res, next) => {
     next()
 }
 
-
 app.use(logger)
+
 app.use('/public', express.static(__dirname + '/public'))
 
 app.get('/', (req, res) => {
@@ -34,6 +34,10 @@ app.get('/now', timed, (req, res) => {
 
 app.get('/:word/echo', (req, res) => {
     res.send({ echo: req.params.word })
+})
+
+app.get("/name", (req, res) => {
+    res.send({ name: req.query.first + " " + req.query.last })
 })
 
 console.log("Hello World")
