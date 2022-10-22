@@ -6,6 +6,11 @@ const logger = (req, res, next) => {
     next()
 }
 
+const timed = (req, res, next) => {
+    req.time = new Date().toString()
+    next()
+}
+
 
 app.use(logger)
 app.use('/public', express.static(__dirname + '/public'))
@@ -21,6 +26,10 @@ app.get('/json', (req, res) => {
     }
     res.send({ "message": "Hello json" })
     
+})
+
+app.get('/now', timed, (req, res) => {
+    res.send({ time: req.time })
 })
 
 console.log("Hello World")
